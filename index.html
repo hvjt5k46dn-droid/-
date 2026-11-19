@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>电子衣橱 · 个人物品库 V3.0</title>
+<title>电子衣橱 · 个人物品库 V3.1</title>
 <style>
 :root{}
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
@@ -369,8 +369,8 @@ body{background:#f3ede1;font-family:-apple-system,"PingFang SC","Microsoft YaHei
           <div class="frow" onclick="openCatMgr()" style="cursor:pointer"><span>🏷️ 自定义分类（增删一级/二级）</span><span class="sub">›</span></div>
           <div class="frow" onclick="openArchive()" style="cursor:pointer"><span>🗃️ 归档记录（已处理物品 · 可恢复）</span><span class="sub" id="mine-arch"></span></div>
           <div class="frow" onclick="toast('已开启到期前30/7/1天提醒')" style="cursor:pointer"><span>🔔 提醒设置</span><span class="sub">已开启 ›</span></div>
-          <div class="frow" onclick="resetDemo()" style="cursor:pointer"><span>♻️ 重置演示数据</span><span class="sub">›</span></div>
-          <div class="frow" onclick="openChangelog()" style="cursor:pointer"><span>ℹ️ 关于 / 📋 版本记录</span><span class="sub">电子衣橱 V3.0 ›</span></div>
+          <div class="frow" onclick="resetDemo()" style="cursor:pointer"><span>🧹 清空所有数据</span><span class="sub">›</span></div>
+          <div class="frow" onclick="openChangelog()" style="cursor:pointer"><span>ℹ️ 关于 / 📋 版本记录</span><span class="sub">电子衣橱 V3.1 ›</span></div>
         </div>
       </div>
     </div>
@@ -452,45 +452,16 @@ const SEED_LOCS={
      "desk-d":{name:"书桌抽屉",icon:"🗄️"}}}
  }}
 };
-const SEED_ITEMS=[
- {id:1,name:"优衣库白色圆领T恤",e:"👕",l1:"01",l2:"01001",size:"L",brand:"UNIQLO",color:"白色",price:79,buy:"2026-05-12",fu:"2026-05-13",lu:"2026-11-02",uc:26,loc:"wardrobe-d1",st:"在用"},
- {id:2,name:"浅蓝牛仔外套",e:"🧥",l1:"01",l2:"01004",size:"L",brand:"Levi's",color:"浅蓝",price:299,buy:"2026-03-20",fu:"2026-03-25",lu:"2026-10-28",uc:18,loc:"wardrobe-hang",st:"在用"},
- {id:3,name:"黑色修身休闲裤",e:"👖",l1:"01",l2:"01002",size:"32",brand:"GU",color:"黑色",price:159,buy:"2026-04-02",fu:"2026-04-03",lu:"2026-11-05",uc:41,loc:"wardrobe-d1",st:"在用"},
- {id:4,name:"Nike Pegasus 跑步鞋",e:"👟",l1:"01",l2:"01005",size:"42码",brand:"Nike",color:"黑白",price:899,buy:"2026-01-15",fu:"2026-01-16",lu:"2026-11-07",uc:63,loc:"living",st:"在用"},
- {id:5,name:"棕色通勤真皮托特包",e:"👜",l1:"01",l2:"01006",size:"中号",brand:"Coach",color:"棕色",price:1299,buy:"2025-11-11",fu:"2025-11-12",lu:"2026-10-30",uc:88,loc:"shelf",st:"在用"},
- {id:6,name:"骆驼长款羽绒服",e:"🧥",l1:"01",l2:"01004",size:"XL",brand:"骆驼",color:"黑色",price:899,buy:"2025-12-01",fu:"2025-12-05",lu:"2026-03-01",uc:35,loc:"underbed",st:"闲置"},
- {id:7,name:"真丝碎花连衣裙",e:"👗",l1:"01",l2:"01003",size:"M",brand:"UR",color:"碎花",price:459,buy:"2026-06-18",fu:"2026-06-20",lu:"2026-07-30",uc:3,loc:"wardrobe-hang",st:"闲置"},
- {id:8,name:"兰蔻小黑瓶精华 50ml",e:"🧴",l1:"02",l2:"02001",size:"50ml",brand:"兰蔻",color:"",price:1080,buy:"2026-06-01",fu:"2026-06-02",lu:"2026-11-08",uc:150,loc:"mirror-cab",st:"在用",exp:"2026-12-01"},
- {id:9,name:"Dior 口红 #999",e:"💄",l1:"02",l2:"02002",size:"3.5g",brand:"Dior",color:"正红",price:320,buy:"2026-02-14",fu:"2026-02-14",lu:"2026-10-20",uc:32,loc:"mirror-cab",st:"在用",exp:"2027-08-01"},
- {id:10,name:"SK-II 神仙水 230ml",e:"🧴",l1:"02",l2:"02001",size:"230ml",brand:"SK-II",color:"",price:1590,buy:"2026-08-08",fu:"2026-08-10",lu:"2026-11-08",uc:88,loc:"mirror-cab",st:"在用",exp:"2027-05-01"},
- {id:11,name:"飞利浦电动牙刷",e:"🪥",l1:"02",l2:"02006",size:"HX6803",brand:"飞利浦",color:"白色",price:399,buy:"2025-06-18",fu:"2025-06-18",lu:"2026-11-08",uc:500,loc:"mirror-cab",st:"在用"},
- {id:12,name:"iPhone 15 128G",e:"📱",l1:"03",l2:"03001",size:"128G",brand:"Apple",color:"黑色",price:5999,buy:"2024-10-01",fu:"2024-10-01",lu:"2026-11-08",uc:760,loc:"bedside",st:"在用"},
- {id:13,name:"AirPods Pro 2",e:"🎧",l1:"03",l2:"03003",size:"二代",brand:"Apple",color:"白色",price:1899,buy:"2025-01-20",fu:"2025-01-20",lu:"2026-11-07",uc:420,loc:"desk-d",st:"在用"},
- {id:14,name:"iPad Air 5",e:"💻",l1:"03",l2:"03001",size:"64G",brand:"Apple",color:"星光色",price:4799,buy:"2025-03-08",fu:"2025-03-10",lu:"2026-08-02",uc:95,loc:"tv-cab",st:"闲置"},
- {id:15,name:"Anker 20000mAh 充电宝",e:"🔋",l1:"03",l2:"03006",size:"20000mAh",brand:"Anker",color:"黑色",price:199,buy:"2026-07-01",fu:"2026-07-02",lu:"2026-10-05",uc:22,loc:"desk-d",st:"在用"},
- {id:16,name:"美的智能电饭煲 4L",e:"🍚",l1:"04",l2:"04004",size:"4L",brand:"美的",color:"白色",price:329,buy:"2025-05-01",fu:"2025-05-01",lu:"2026-11-08",uc:520,loc:"wall-cab",st:"在用"},
- {id:17,name:"罗莱长绒棉四件套",e:"🛏️",l1:"04",l2:"04002",size:"1.8m床",brand:"罗莱",color:"浅灰",price:899,buy:"2025-11-11",fu:"2025-11-15",lu:"2026-11-08",uc:360,loc:"bedroom",st:"在用"},
- {id:18,name:"苏泊尔电热水壶",e:"🫖",l1:"04",l2:"04004",size:"1.7L",brand:"苏泊尔",color:"银色",price:129,buy:"2024-12-12",fu:"2024-12-12",lu:"2026-11-08",uc:700,loc:"wall-cab",st:"在用"},
- {id:19,name:"三只松鼠每日坚果 30包",e:"🥜",l1:"05",l2:"05001",size:"750g",brand:"三只松鼠",color:"",price:89,buy:"2026-10-01",fu:"2026-10-02",lu:"2026-11-06",uc:34,loc:"wall-cab",st:"在用",exp:"2026-11-25"},
- {id:20,name:"可口可乐 330ml×24罐",e:"🥤",l1:"05",l2:"05002",size:"24罐",brand:"可口可乐",color:"",price:59,buy:"2026-09-15",fu:"2026-09-16",lu:"2026-11-01",uc:15,loc:"fridge",st:"在用",exp:"2027-03-15"},
- {id:21,name:"星巴克深度烘焙咖啡豆",e:"☕",l1:"05",l2:"05002",size:"1kg",brand:"星巴克",color:"",price:128,buy:"2026-10-20",fu:"2026-10-21",lu:"2026-11-08",uc:18,loc:"wall-cab",st:"在用",exp:"2026-12-20"},
- {id:22,name:"《三体》全集",e:"📖",l1:"06",l2:"06001",size:"全3册",brand:"",color:"",price:93,buy:"2025-04-23",fu:"2025-04-25",lu:"2025-06-30",uc:3,loc:"bookshelfA",st:"闲置"},
- {id:23,name:"LAMY 狩猎者钢笔",e:"🖋️",l1:"06",l2:"06004",size:"EF尖",brand:"LAMY",color:"磨砂黑",price:780,buy:"2025-09-01",fu:"2025-09-02",lu:"2026-10-15",uc:60,loc:"desk-d",st:"在用"},
- {id:24,name:"《聪明的投资者》",e:"📕",l1:"06",l2:"06001",size:"第4版",brand:"",color:"",price:68,buy:"2026-08-20",fu:"2026-08-25",lu:"2026-11-03",uc:8,loc:"bookshelfA",st:"在用"},
- {id:25,name:"天马折叠收纳箱 3只装",e:"📦",l1:"07",l2:"07001",size:"50L×3",brand:"天马",color:"白色",price:49,buy:"2026-03-01",fu:"2026-03-01",lu:"2026-09-10",uc:6,loc:"underbed",st:"在用"},
- {id:26,name:"牧高笛双人露营帐篷",e:"⛺",l1:"07",l2:"07003",size:"双人",brand:"牧高笛",color:"军绿",price:659,buy:"2025-04-30",fu:"2025-05-02",lu:"2025-10-06",uc:4,loc:"underbed",st:"闲置"},
- {id:27,name:"旧毛衣（记不清价格）",e:"🧶",l1:"01",l2:"01001",size:"M",brand:"",color:"米色",price:null,buy:"",fu:"",lu:"2026-10-01",uc:5,loc:"wardrobe-hang",st:"在用"},
- {id:28,name:"朋友送的马克杯",e:"☕",l1:"04",l2:"04005",size:"400ml",brand:"",color:"黄色",price:null,buy:"",fu:"",lu:"2026-11-01",uc:20,loc:"wall-cab",st:"在用"}
-];
+const SEED_ITEMS=[];   /* V3.1：演示物品已清空，全新空库交付 */
 const THEMES={yellow:["奶黄","#ffd35c"],pink:["樱粉","#ffb8cf"],mint:["薄荷","#a8e0c8"],sky:["天青","#a9d3f5"],taro:["香芋","#cdb4f0"],mocha:["奶茶","#d9bd9c"]};
 
 /* ================= 持久化 ================= */
-const LSKEY="yclj-wardrobe-data-v2";
+const LSKEY="yclj-wardrobe-data-v3";
 let DB=null;
 function freshDB(){return {items:JSON.parse(JSON.stringify(SEED_ITEMS)),locs:JSON.parse(JSON.stringify(SEED_LOCS)),cats:JSON.parse(JSON.stringify(SEED_CATS)),theme:"yellow",heroMode:"dynamic",uid:100};}
 function loadDB(){try{const s=localStorage.getItem(LSKEY);DB=s?JSON.parse(s):freshDB();if(!DB||!DB.items||!DB.cats||!DB.locs)DB=freshDB();if(!DB.heroMode)DB.heroMode="dynamic";}catch(e){DB=freshDB();}}
 function saveDB(){try{localStorage.setItem(LSKEY,JSON.stringify(DB));}catch(e){toast("⚠️ 本地存储空间不足，本次修改可能未保存（图片较多时建议清理）");}}
-function resetDemo(){DB=freshDB();saveDB();applyTheme();refreshAll();toast("已重置为演示数据");}
+function resetDemo(){if(!confirm("确定清空所有物品数据吗？此操作不可恢复（分类和位置会恢复为默认）。"))return;DB=freshDB();saveDB();applyTheme();refreshAll();toast("🧹 已清空，全新开始");}
 loadDB();
 
 /* ================= 工具 ================= */
@@ -771,7 +742,7 @@ function itemFormHTML(p,it){
  const l2opts=Object.entries(cats[l1k].subs).map(([c,n])=>'<option value="'+c+'" '+(it.l2===c?"selected":"")+">"+esc(n)+"</option>").join("");
  const locopts='<option value="__none__" '+(!it.loc?"selected":"")+">暂不设置（可日后补全）</option>"+flatLeaves().map(l=>'<option value="'+l.id+'" '+(it.loc===l.id?"selected":"")+">"+esc(l.name)+"</option>").join("")+'<option value="__new__">➕ 自定义新位置…</option>';
  const td=TODAY.toISOString().slice(0,10);
- return '<div class="fitem"><label>物品名称 <i>*</i></label><input id="'+p+'-name" value="'+esc(it.name||"")+'" placeholder="如：优衣库白色圆领T恤"></div>'+
+ return '<div class="fitem"><label>物品名称 <i>*</i></label><input id="'+p+'-name" value="'+esc(it.name||"")+'" placeholder="如：白色圆领T恤"></div>'+
  '<div class="form-row"><div class="fitem"><label>一级分类 <i>*</i></label><select id="'+p+'-l1" onchange="formL1Change(\''+p+'\')">'+l1opts+"</select></div>"+
  '<div class="fitem"><label>二级分类 <i>*</i></label><select id="'+p+'-l2">'+l2opts+"</select></div></div>"+
  '<div class="form-row"><div class="fitem"><label>规格尺寸 <em>选填</em></label><input id="'+p+'-size" value="'+esc(it.size||"")+'" placeholder="L / 42码 / 500ml"></div>'+
@@ -1666,8 +1637,9 @@ function addL1(){
 }
 
 /* ================= 版本记录 ================= */
-const APP_VER="V3.0";
+const APP_VER="V3.1";
 const VERSIONS=[
+ ["V3.1（2026-11-19）","正式交付版：清空全部演示物品数据，打开即是全新空库，直接录入自己的物品；本地存储升级 v3（旧演示数据自动作废）；「重置演示数据」改为「清空所有数据」（带二次确认）。"],
  ["V3.0（2026-11-10）","标签系统整体升级为「生活工具箱·图片合集」调整版15 同款 DOM 交互（样式+使用方法全套移植）：①选🏷标签工具后点图片即落标签，椭圆胶囊内直接打字（不再是底部输入条）；②按住圆点或胶囊随手拖动位置，松手即存；③编辑时胶囊内出现七色文字色板，点色即换；④胶囊内 ✕ 就地删除；⑤单击已放标签可再次编辑，空文字自动移除；⑥标签随缩放/平移实时跟随，生成白底图时同款样式烧录进图。"],
  ["V2.9（2026-11-10）","①根治放大失效：V2.8 工作区图片被外层浏览样式 max-width:92%/max-height:72% 钳制，导致点放大只移位不变大；现改为 CSS transform 缩放并解除钳制，按钮/双指/滚轮缩放全部真实生效；②新增 iOS 原生捏合手势事件（gesturechange），夸克等浏览器双指缩放不再失灵；③画布区域按图片宽高比自适应，图片即画布、不再有误导性大白边；④标签样式全面对齐「生活工具箱·图片合集」调整版15：白色圆点锚点+24px横杠+椭圆毛玻璃深色胶囊+七色文字可选（默认米白），方向规则一致（锚点靠右胶囊朝左），烧录进白底图同款样式 2 倍尺寸。"],
  ["V2.8（2026-11-10）","①工作区显示链路重构，根治夸克浏览器画布纯白：图片显示改用 <img> 元素（与第②步缩略图同一机制，缩略图能显示则工作区必能显示），canvas 降级为透明覆盖层只画圈选/标签，不再依赖大图 drawImage；②「还原」按你的意思改为「↩️ 还原上一版」：每次生成白底图自动存历史（最多5版）可逐版回退，第一版被 AI 抠坏时自动切回原拍图并给出手动圈选指引；③toast 提示改为多行完整显示不再截断，停留时长按文字长度自适应；④提示：复杂背景照片 AI 抠图易出碎块，建议点原图进工作区手动画保留圈。"],
